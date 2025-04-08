@@ -3,8 +3,9 @@ import {
   extractReasoningMiddleware,
   wrapLanguageModel,
 } from 'ai';
-import { groq } from '@ai-sdk/groq';
-import { xai } from '@ai-sdk/xai';
+import {openai} from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
+import { google } from '@ai-sdk/google';
 import { isTestEnvironment } from '../constants';
 import {
   artifactModel,
@@ -24,15 +25,16 @@ export const myProvider = isTestEnvironment
     })
   : customProvider({
       languageModels: {
-        'chat-model': xai('grok-2-1212'),
-        'chat-model-reasoning': wrapLanguageModel({
-          model: groq('deepseek-r1-distill-llama-70b'),
-          middleware: extractReasoningMiddleware({ tagName: 'think' }),
-        }),
-        'title-model': xai('grok-2-1212'),
-        'artifact-model': xai('grok-2-1212'),
+        'chat-model-gpt-4o': openai('gpt-4o'),
+        'chat-model-gpt-4o-mini': openai('gpt-4o-mini'),
+        'chat-model-claude-haiku': anthropic('claude-3-5-haiku-latest'),
+        'chat-model-claude-sonet': anthropic('claude-3-5-sonnet-latest'),
+        'chat-model-gemini-flash': google('gemini-1.5-flash'),
+        'chat-model-gemini-pro': google('gemini-1.5-pro'),
+        'title-model': openai('gpt-4o'),
+        'artifact-model': openai('gpt-4o'),
       },
       imageModels: {
-        'small-model': xai.image('grok-2-image'),
+        'small-model': openai.image('dall-e-3'),
       },
     });

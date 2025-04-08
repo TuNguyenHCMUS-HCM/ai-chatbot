@@ -21,6 +21,7 @@ export async function generateTitleFromUserMessage({
 }: {
   message: Message;
 }) {
+  console.log('title model', myProvider.languageModel('title-model'))
   const { text: title } = await generateText({
     model: myProvider.languageModel('title-model'),
     system: `\n
@@ -30,6 +31,8 @@ export async function generateTitleFromUserMessage({
     - do not use quotes or colons`,
     prompt: JSON.stringify(message),
   });
+
+  console.log('title', title)
 
   return title;
 }

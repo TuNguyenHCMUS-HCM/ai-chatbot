@@ -8,13 +8,33 @@ interface ChatModel {
 
 export const chatModels: Array<ChatModel> = [
   {
-    id: 'chat-model',
-    name: 'Chat model',
+    id: 'chat-model-gpt-4o',
+    name: 'GPT-4o',
     description: 'Primary model for all-purpose chat',
   },
   {
-    id: 'chat-model-reasoning',
-    name: 'Reasoning model',
-    description: 'Uses advanced reasoning',
+    id: 'chat-model-gpt-4o-mini',
+    name: 'GPT-4o Mini',
+    description: 'Primary model for all-purpose chat',
+  },
+  {
+    id: 'chat-model-claude-haiku',
+    name: 'Claude 3.5 Haiku',
+    description: 'Primary model for all-purpose chat',
+  },
+  {
+    id: 'chat-model-claude-sonet',
+    name: 'Claude 3.5 Sonnet',
+    description: 'Primary model for all-purpose chat',
+  },
+  {
+    id: 'chat-model-gemini-flash',
+    name: 'Gemini 1.5 Flash',
+    description: 'Primary model for all-purpose chat',
+  },
+  {
+    id: 'chat-model-gemini-pro',
+    name: 'Gemini 1.5 Pro',
+    description: 'Primary model for all-purpose chat',
   },
 ];

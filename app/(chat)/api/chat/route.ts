@@ -29,6 +29,7 @@ import { myProvider } from '@/lib/ai/providers';
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
+  console.log("chat api called")
   try {
     const {
       id,
@@ -54,10 +55,17 @@ export async function POST(request: Request) {
 
     const chat = await getChatById({ id });
 
+    console.log("chat by id", chat)
+
     if (!chat) {
+
+      console.log('gen title')
+
       const title = await generateTitleFromUserMessage({
         message: userMessage,
       });
+
+      console.log('title', title)
 
       await saveChat({ id, userId: session.user.id, title });
     } else {
