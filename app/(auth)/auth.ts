@@ -1,6 +1,7 @@
 import { compare } from 'bcrypt-ts';
 import NextAuth, { type User, type Session } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import AzureADProvider from 'next-auth/providers/azure-ad';
 
 import { getUser } from '@/lib/db/queries';
 
@@ -18,6 +19,11 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID!,
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
+      issuer: process.env.AZURE_AD_ISSUSER!,
+    }),
     Credentials({
       credentials: {},
       async authorize({ email, password }: any) {
